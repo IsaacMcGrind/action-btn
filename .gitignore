@@ -1,3 +1,4 @@
 /node_modules
 /.sublime-grunt.cache
 /src/*.dmp
+/bower_components

@@ -15,20 +15,14 @@ ActionButton = (function(){
 				options = app.priv.extend(true, options, opts);
 				app.priv.findUserEvents();
 				for(var i in options.actionEvents){
-					console.log('ATTACH', options.actionEvents[i]);
 					$(options.mainContainer).on(options.actionEvents[i], options.actionClass, app.priv.doAction);	
 				}
-				
 			}
 		},
 		priv : {
 			doAction : function(event){
 				var action = $(this).data('action'),
 				ev = $(this).data('event');
-				if(ev){
-					//console.log('Event', ev);
-				}
-				//console.log('onAction',action,ev, event.type.toLowerCase());
 				if(event.type.toLowerCase() === ev.toLowerCase()){
 					if(typeof options.actionMethods[action] !== 'undefined'){
 						options.actionMethods[action].call(this, $(this));

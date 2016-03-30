@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kmallea/actionButton.git"
+    "url": "https://github.com/kmallea/action-btn.git"
   },
   "author": "Khary Mallea <KharyMallea@gmail.com> (http://khary.co/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kmallea/actionButton/issues"
+    "url": "https://github.com/kmallea/action-btn/issues"
   },
-  "homepage": "https://github.com/kmallea/actionButton",
+  "homepage": "https://github.com/kmallea/action-btn",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.11.2",

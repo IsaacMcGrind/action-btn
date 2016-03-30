@@ -1,0 +1,21 @@
+{
+  "name": "actionButton",
+  "description": "Control your button clicks and actions",
+  "main": "/dist/actionButton.min.js",
+  "authors": [
+    "Khary Mallea <KharyMallea@gmail.com> (http://khary.co/)"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/kmallea/actionButton",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.2"
+  }
+}
