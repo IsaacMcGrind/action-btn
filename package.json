@@ -1,0 +1,25 @@
+{
+  "name": "actionButton",
+  "version": "0.0.1",
+  "description": "Control your button clicks and actions",
+  "main": "/dist/actionButton.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kmallea/actionButton.git"
+  },
+  "author": "Khary Mallea <KharyMallea@gmail.com> (http://khary.co/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmallea/actionButton/issues"
+  },
+  "homepage": "https://github.com/kmallea/actionButton",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
