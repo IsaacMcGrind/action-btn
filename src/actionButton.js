@@ -12,20 +12,36 @@ ActionButton = (function(){
 	app = {
 		pub : {
 			init : function(opts){
+				
 				options = app.priv.extend(true, options, opts);
 				app.priv.findUserEvents();
 				for(var i in options.actionEvents){
 					$(options.mainContainer).on(options.actionEvents[i], options.actionClass, app.priv.doAction);	
 				}
+				//console.log(opts);
+			},
+			add : function(obj){
+				if(obj){
+					console.log('ADD METHODS',obj);
+					
+					var actionMethods = (obj.actionMethods) ? obj : {'actionMethods':obj};
+					options = app.priv.extend(true, options, actionMethods);
+				}else{
+					console.error('ActionButton.add() ERROR - Attempted to add methods but non supplied');
+				}
+				
 			}
 		},
 		priv : {
 			doAction : function(event){
 				var action = $(this).data('action'),
 				ev = $(this).data('event');
-				if(event.type.toLowerCase() === ev.toLowerCase()){
-					if(typeof options.actionMethods[action] !== 'undefined'){
+				var evList = ev.split(',');
+				if(options.actionEvents.indexOf(event.type.toLowerCase()) > -1){
+					if(typeof options.actionMethods[action] !== undefined && typeof options.actionMethods[action] !== null){
 						options.actionMethods[action].call(this, $(this));
+					}else{
+						console.error('app.priv.doAction() ERROR - Missing method:' + action);
 					}
 				}
 			},
@@ -68,11 +84,15 @@ ActionButton = (function(){
 			findUserEvents : function(){
 				$(options.actionClass).each(function(){
 					var ev = $(this).data('event');
-					if(options.actionEvents.indexOf(ev) === -1){
-						console.log('add evnt',ev);
-						options.actionEvents.push(ev);	
+					var evList = ev.split(',');
+					//console.log('ev',evList);
+					if(evList){
+						for(var i in evList){
+							if(options.actionEvents.indexOf(evList[i]) === -1){
+								options.actionEvents.push(evList[i]);	
+							}
+						}
 					}
-					
 				});
 			}
 		}
