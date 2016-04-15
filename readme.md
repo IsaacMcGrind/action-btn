@@ -6,10 +6,22 @@ Add the class of "action-btn" to your element with an associated "data-action" w
 
 The methods you call are passed in on "init" via the "actionMethods" object or added via the ActionButton.add() method
 
-### Requires: 
-* [Jquery](http://jquery.com)
+### Supported Browsers: 
+* IE9+
+* Firefox 3.5+
+* Opera 9+
+* Safari 4+
+* Chrome 1+
+* iPhone and iPad iOS1+
+* Android phone and tablets 2.1+
+* Blackberry OS6+
+* Windows 7.5+
+* Mobile Firefox
+* Opera Mobile
 
-#### Basic Example:
+
+
+### Basic Example:
 
 ##### HTML:
 
@@ -33,7 +45,7 @@ The methods you call are passed in on "init" via the "actionMethods" object or a
 	});
 ```
 
-##### Adding your own methods
+##### Adding your own action methods
 
 ```js
 	var methods = {
@@ -49,6 +61,23 @@ The methods you call are passed in on "init" via the "actionMethods" object or a
 	ActionButton.add(methods);
 ```
 
+### Methods
+Method | Arguments | Return
+------ | ---- | -----------
+init | obj : An Object of options to initialize ActionButton | none
+add | object : An Object of functions that will be available via AvtionButton | none
+isSupported | none : returns a true/false if supported by browser | Boolean
+
+
+### data-attributes
+Data attributes are used to determine what method to call and on what event. The following are required.
+
+Attribute | Type | Default | Description
+--------- | ---- | ------- | -----------
+action | String |  | a method that was supplied as an actionMethod
+event | String | click | a valid html event
+
+
 ### Options 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
@@ -56,3 +85,4 @@ mainContainer | String | body | Container we attach our listener
 actionClass | |String | .action-btn | Class that accepts action calls
 actionMethods | Object | null | An object representing the functions available to buttons
 actionEvents | Array | ['click'] | An array of valid html events
+

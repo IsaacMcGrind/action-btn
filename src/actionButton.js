@@ -7,39 +7,53 @@ ActionButton = (function(){
 		actionEvents : ['click']
 	},
 	settings = {
-
+		isSupported : false
 	},
 	app = {
 		pub : {
 			init : function(opts){
-				
-				options = app.priv.extend(true, options, opts);
-				app.priv.findUserEvents();
-				for(var i in options.actionEvents){
-					$(options.mainContainer).on(options.actionEvents[i], options.actionClass, app.priv.doAction);	
+				if ( 'querySelector' in document && 'addEventListener' in window ) {
+					settings.isSupported = true;
+					options = app.priv.extend(true, options, opts);
+					app.priv.findUserEvents();
+					for(var i in options.actionEvents){
+						var items = document.querySelectorAll(options.actionClass);
+						var totalItems = items.length;
+						for(var j = 0; j < totalItems; j++){
+							items[j].addEventListener(options.actionEvents[i], app.priv.doAction, false);
+						}	
+					}
+				}else{
+					alert('ActionButton not supported in this browser.');
+					console.error('ActionButton not supported.');
 				}
-				//console.log(opts);
 			},
 			add : function(obj){
+				app.priv.testSupport();
 				if(obj){
-					console.log('ADD METHODS',obj);
-					
 					var actionMethods = (obj.actionMethods) ? obj : {'actionMethods':obj};
 					options = app.priv.extend(true, options, actionMethods);
 				}else{
-					console.error('ActionButton.add() ERROR - Attempted to add methods but non supplied');
+					console.error('ActionButton.add() ERROR - Attempted to add methods but none supplied');
 				}
-				
-			}
+			},
+			isSupported : function(){ return settings.isSupported; }
+
 		},
 		priv : {
+			testSupport : function(){
+				if(settings.isSupported === false){
+					console.error('ActionButton not supported.');
+					return false;
+				}
+			},
 			doAction : function(event){
-				var action = $(this).data('action'),
-				ev = $(this).data('event');
+				var action = this.dataset.action,
+				ev = this.dataset.event;
 				var evList = ev.split(',');
 				if(options.actionEvents.indexOf(event.type.toLowerCase()) > -1){
 					if(typeof options.actionMethods[action] !== undefined && typeof options.actionMethods[action] !== null){
-						options.actionMethods[action].call(this, $(this));
+						options.actionMethods[action].call(this, this);
 					}else{
 						console.error('app.priv.doAction() ERROR - Missing method:' + action);
 					}
@@ -82,18 +96,21 @@ ActionButton = (function(){
 
 			},
 			findUserEvents : function(){
-				$(options.actionClass).each(function(){
-					var ev = $(this).data('event');
+				
+				var items = document.querySelectorAll(options.actionClass);
+				var totalItems = items.length;
+				for(var i = 0; i < totalItems; i++){
+					var ev = items[i].dataset.event;
 					var evList = ev.split(',');
-					//console.log('ev',evList);
 					if(evList){
-						for(var i in evList){
-							if(options.actionEvents.indexOf(evList[i]) === -1){
-								options.actionEvents.push(evList[i]);	
+						for(var j in evList){
+							if(options.actionEvents.indexOf(evList[j]) === -1){
+								options.actionEvents.push(evList[j]);	
 							}
 						}
 					}
-				});
+				}
+				
 			}
 		}
 	};

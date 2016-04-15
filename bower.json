@@ -1,5 +1,5 @@
 {
-  "name": "actionButton",
+  "name": "action-btn",
   "description": "Control your button clicks and actions",
   "main": "/dist/actionButton.min.js",
   "authors": [
@@ -16,6 +16,5 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.2.2"
   }
 }
