@@ -86,3 +86,19 @@ actionClass | |String | .action-btn | Class that accepts action calls
 actionMethods | Object | null | An object representing the functions available to buttons
 actionEvents | Array | ['click'] | An array of valid html events
 
+
+#### Install
+
+Include in your page using script tags
+
+```
+	<script src="js/actionButton.min.js"></script>
+```
+
+or
+
+##### Bower
+
+```
+	bower install action-btn
+```
