@@ -82,7 +82,7 @@ event | String | click | a valid html event
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 mainContainer | String | body | Container we attach our listener
-actionClass | |String | .action-btn | Class that accepts action calls
+actionClass   |String | .action-btn | Class that accepts action calls
 actionMethods | Object | null | An object representing the functions available to buttons
 actionEvents | Array | ['click'] | An array of valid html events
 
