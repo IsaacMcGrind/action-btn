@@ -1,5 +1,4 @@
 ActionButton = (function(){
-	var me = this;
 	var options = {
 		mainContainer : 'body',
 		actionClass : '.action-btn',
@@ -20,7 +19,12 @@ ActionButton = (function(){
 						var items = document.querySelectorAll(options.actionClass);
 						var totalItems = items.length;
 						for(var j = 0; j < totalItems; j++){
-							items[j].addEventListener(options.actionEvents[i], app.priv.doAction, false);
+							if(typeof items[j].dataset.event !== 'undefined'){
+								var dataVal = items[j].dataset.event;
+								if(dataVal == options.actionEvents[i]){
+									items[j].addEventListener(options.actionEvents[i], app.priv.doAction, false);
+								}
+							}
 						}	
 					}
 				}else{
@@ -38,7 +42,6 @@ ActionButton = (function(){
 				}
 			},
 			isSupported : function(){ return settings.isSupported; }
-
 		},
 		priv : {
 			testSupport : function(){
@@ -96,7 +99,6 @@ ActionButton = (function(){
 
 			},
 			findUserEvents : function(){
-				
 				var items = document.querySelectorAll(options.actionClass);
 				var totalItems = items.length;
 				for(var i = 0; i < totalItems; i++){
@@ -110,7 +112,6 @@ ActionButton = (function(){
 						}
 					}
 				}
-				
 			}
 		}
 	};
